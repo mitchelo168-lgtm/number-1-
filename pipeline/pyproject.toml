@@ -1,0 +1,55 @@
+[project]
+name = "streamclip"
+version = "0.1.0"
+description = "Automated stream-to-social clip pipeline: detect live streams, record, detect highlights, clip, review, publish."
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "sqlalchemy>=2.0",
+    "aiosqlite>=0.20",
+    "greenlet>=3.0",
+    "pydantic>=2.8",
+    "pydantic-settings>=2.4",
+    "httpx>=0.27",
+    "discord.py>=2.4",
+    "python-dotenv>=1.0",
+    "websockets>=13.0",
+]
+
+[project.optional-dependencies]
+audio = [
+    "transformers>=4.44",
+    "torch>=2.3",
+    "torchaudio>=2.3",
+]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=5.0",
+    "respx>=0.21",
+    "ruff>=0.6",
+]
+
+[tool.ruff.lint]
+# B008: FastAPI's `Depends(...)` in a parameter default is the framework's
+# documented dependency-injection pattern, not the real bug this rule targets.
+ignore = ["B008"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/streamclip"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+markers = [
+    "integration: slower tests that touch real subprocesses/ffmpeg/etc, no network",
+    "slow: heavy tests (e.g. loading real ML models) skipped by default",
+]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "-m 'not slow'"

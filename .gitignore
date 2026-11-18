@@ -1,0 +1,25 @@
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+*.db
+pipeline/data/
+
+# --- Node / GUI ---
+node_modules/
+gui/dist/
+gui/node_modules/
+gui/.tmp-e2e-data/
+gui/test-results/
+gui/playwright-report/
+gui/e2e/.tmp-e2e-data/
+
+# --- env / secrets ---
+.env
+*.env.local
+
+# --- misc ---
+.DS_Store

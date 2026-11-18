@@ -1,0 +1,44 @@
+services:
+  api:
+    build:
+      context: ./pipeline
+      target: api
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      - DATABASE_URL=sqlite+aiosqlite:////data/streamclip.db
+      - RECORDINGS_DIR=/data/recordings
+      - CLIPS_DIR=/data/clips
+    volumes:
+      - streamclip-data:/data
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: ./pipeline
+      target: worker
+    env_file: .env
+    environment:
+      - DATABASE_URL=sqlite+aiosqlite:////data/streamclip.db
+      - RECORDINGS_DIR=/data/recordings
+      - CLIPS_DIR=/data/clips
+    volumes:
+      - streamclip-data:/data
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  gui:
+    build:
+      context: ./gui
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000}
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  streamclip-data:
