@@ -9,7 +9,7 @@ from streamclip.clipper.ffmpeg_clipper import FfmpegClipper
 from streamclip.detection.audio_classifier import AudioEventClassifier
 from streamclip.detection.chat_signals import ChatSignalDetector
 from streamclip.detection.scorer import HighlightScorer
-from streamclip.models import Clip, Platform, RecordingChunk, StreamSession, Streamer
+from streamclip.models import Clip, Platform, RecordingChunk, Streamer, StreamSession
 from streamclip.orchestrator.worker import (
     ChatEvent,
     ChunkEvent,

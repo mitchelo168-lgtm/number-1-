@@ -2,7 +2,7 @@ import pytest
 
 from streamclip.discord_bot.bot import parse_custom_id
 from streamclip.discord_bot.review_bot import DiscordReviewBot, ReviewMessage
-from streamclip.models import Clip, Platform, ReviewStatus, StreamSession, Streamer
+from streamclip.models import Clip, Platform, ReviewStatus, Streamer, StreamSession
 
 
 @pytest.mark.parametrize(

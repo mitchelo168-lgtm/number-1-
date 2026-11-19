@@ -1,8 +1,8 @@
 import httpx
 import respx
 
-from streamclip.platforms.twitch import TOKEN_URL, TwitchAdapter, TwitchTokenProvider
 from streamclip.platforms.base import ChatMessage
+from streamclip.platforms.twitch import TOKEN_URL, TwitchAdapter, TwitchTokenProvider
 
 
 class FakeWebSocket:

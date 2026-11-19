@@ -3,7 +3,10 @@ from pathlib import Path
 
 import pytest
 
-from streamclip.detection.audio_classifier import AudioEventClassifier, extract_audio_window
+from streamclip.detection.audio_classifier import (
+    AudioEventClassifier,
+    extract_audio_window,
+)
 
 
 def fake_classify_factory(results: list[dict]):

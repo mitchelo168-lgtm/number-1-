@@ -63,7 +63,7 @@ async def _seed_clip(app) -> int:
     # production; streamers/sessions aren't created via the API, so this
     # seeds one straight through the app's own session_factory instead of
     # re-implementing those routes just for a test.
-    from streamclip.models import Clip, Platform, StreamSession, Streamer
+    from streamclip.models import Clip, Platform, Streamer, StreamSession
 
     async with app.state.session_factory() as session:
         streamer = Streamer(platform=Platform.TWITCH, channel_id="s", display_name="s")

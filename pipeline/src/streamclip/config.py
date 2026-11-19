@@ -1,3 +1,4 @@
+from pydantic import model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -9,6 +10,18 @@ class Settings(BaseSettings):
     """
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+
+    @model_validator(mode="before")
+    @classmethod
+    def _treat_blank_env_values_as_unset(cls, data):
+        """.env.example leaves every credential as `KEY=` (blank) until the
+        user fills it in. A blank string isn't a valid int for fields like
+        discord_review_channel_id, so without this it fails on startup with
+        every optional field still blank - which is the documented default,
+        healthy state, not a configuration error."""
+        if isinstance(data, dict):
+            return {key: value for key, value in data.items() if value != ""}
+        return data
 
     database_url: str = "sqlite+aiosqlite:///./streamclip.db"
 

@@ -3,7 +3,12 @@ import json
 import httpx
 import respx
 
-from streamclip.platforms.kick import API_BASE, TOKEN_URL, KickAdapter, KickTokenProvider
+from streamclip.platforms.kick import (
+    API_BASE,
+    TOKEN_URL,
+    KickAdapter,
+    KickTokenProvider,
+)
 
 
 class FakeWebSocket:

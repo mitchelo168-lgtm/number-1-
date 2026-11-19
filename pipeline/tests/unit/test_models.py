@@ -2,7 +2,7 @@ import pytest
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 
-from streamclip.models import Clip, Platform, ReviewStatus, StreamSession, Streamer
+from streamclip.models import Clip, Platform, ReviewStatus, Streamer, StreamSession
 
 
 async def test_create_streamer(db_session):
