@@ -100,6 +100,15 @@ npm run dev
 
 ```bash
 cp .env.example .env   # fill in credentials
+```
+
+If this is running on a real server (not your own laptop), edit `.env` and
+set `VITE_API_BASE_URL` to that server's public IP or domain, e.g.
+`VITE_API_BASE_URL=http://203.0.113.5:8000` - it gets baked into the GUI's
+JavaScript and runs in every visitor's browser, so "localhost" only works
+when you're browsing from the same machine the server is on.
+
+```bash
 docker compose up --build
 ```
 
